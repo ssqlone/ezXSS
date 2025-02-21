@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   ezxssdb:
-    image: mysql:latest
+    image: mysql:9
     restart: always
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
@@ -17,9 +17,9 @@ services:
       dockerfile: ./Dockerfile
       args:
         - USE_MAIL_ALERTS=${useMailAlerts}
-    ports:
-      - "${dockerHttpPort:-80}:80"
-      - "${dockerHttpsPort:-443}:443"
+    expose:
+      - 80
+      - 443
     volumes:
       - .:/var/www/html
     restart: always
